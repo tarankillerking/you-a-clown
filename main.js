@@ -1,7 +1,7 @@
 noseX=0
 noseY=0
 function preload(){
-    clownnose=loadImage("clownnose.jpg")
+    clownnose=loadImage("clownnose.png")
 }
 function setup(){
     canvas=createCanvas(500,500)
