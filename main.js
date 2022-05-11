@@ -25,6 +25,8 @@ if (results.length>0) {
 }
 function draw() {
     image(video,0,0,500,500)
+    fill("red")
+    circle(noseX,noseY,50)
     image(clownnose,noseX,noseY,50,50)  
     }
     function takesnapshot(){
