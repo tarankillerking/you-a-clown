@@ -1,34 +1,40 @@
-noseX=0
-noseY=0
-function preload(){
-    clownnose=loadImage("clownnose.png")
-}
-function setup(){
-    canvas=createCanvas(500,500)
-    video=createCapture(VIDEO)
-    video.hide()
-    posenet=ml5.poseNet(video,modelloaded)
-    posenet.on('pose',gotresult)
+noseX=0;
+noseY=0;
+
+function preload() {
+  clown_nose = loadImage('clownnose.png');
 }
 
-function modelloaded(){
-    console.log("modelloaded")
+function setup() {
+  canvas = createCanvas(300, 300);
+  canvas.center();
+  video = createCapture(VIDEO);
+  video.size(300, 300);
+  video.hide();
 
+  poseNet = ml5.poseNet(video, modelLoaded);
+  poseNet.on('pose', gotPoses);
 }
-function gotresult(results){
-if (results.length>0) {
-   
-    console.log(results)
-    noseX=results[0].pose.nose.x
-    noseY=results[0].pose.nose.y
+
+function modelLoaded() {
+  console.log('PoseNet Is Initialized');
 }
+
+function gotPoses(results)
+{
+  if(results.length > 0)
+  {
+    console.log(results);
+    noseX = results[0].pose.nose.x;
+    noseY = results[0].pose.nose.y;
+  }
 }
+
 function draw() {
-    image(video,0,0,500,500)
-    fill("red")
-    circle(noseX,noseY,50)
-    image(clownnose,noseX,noseY,50,50)  
-    }
-    function takesnapshot(){
-        save('youareaclown.png')
-    }
+  image(video, 0, 0, 300, 300);
+  image(clown_nose, noseX, noseY, 30, 30);
+}
+
+function takesnapshot(){    
+  save('myFilterImage.png');
+}
